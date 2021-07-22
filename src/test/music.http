@@ -1,0 +1,35 @@
+### list all
+GET http://localhost:8080/music/all
+Accept: application/json
+
+### find id
+GET http://localhost:8080/music/1
+Accept: application/json
+
+### create
+POST http://localhost:8080/music/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "performer": "eloado",
+  "title": "cim",
+  "genre": "mufaj"
+}
+
+### modify id
+PUT http://localhost:8080/music/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "performer": "masik eloado",
+  "title": "masik cim",
+  "genre": "masik mufaj"
+}
+
+### delete id
+DELETE  http://localhost:8080/music/1
+
+### delete all
+DELETE  http://localhost:8080/music/deleteall

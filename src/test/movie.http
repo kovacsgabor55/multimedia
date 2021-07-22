@@ -1,0 +1,35 @@
+### list all
+GET http://localhost:8080/movie/all
+Accept: application/json
+
+### find id
+GET http://localhost:8080/movie/1
+Accept: application/json
+
+### create
+POST http://localhost:8080/movie/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "cim",
+  "director": "rendezo",
+  "filmStudio": "studio"
+}
+
+### modify id
+PUT http://localhost:8080/movie/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "masik cim",
+  "director": "masik rendezo",
+  "filmStudio": "masik studio"
+}
+
+### delete id
+DELETE  http://localhost:8080/movie/1
+
+### delete all
+DELETE  http://localhost:8080/movie/deleteall

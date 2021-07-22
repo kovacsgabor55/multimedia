@@ -1,0 +1,35 @@
+### list all
+GET http://localhost:8080/book/all
+Accept: application/json
+
+### find id
+GET http://localhost:8080/book/1
+Accept: application/json
+
+### create
+POST http://localhost:8080/book/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "author": "szerzo",
+  "title": "cim",
+  "releaseDate": "2021-01-01"
+}
+
+### modify id
+PUT http://localhost:8080/book/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "author": "masik szerzo",
+  "title": "masik cim",
+  "releaseDate": "2021-11-11"
+}
+
+### delete id
+DELETE  http://localhost:8080/book/1
+
+### delete all
+DELETE  http://localhost:8080/book/deleteall
