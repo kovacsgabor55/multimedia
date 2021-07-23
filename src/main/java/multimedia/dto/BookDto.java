@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 public class BookDto {
+    private int id;
     private String author;
     private String title;
     private LocalDate releaseDate;

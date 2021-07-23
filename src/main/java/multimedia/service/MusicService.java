@@ -8,6 +8,8 @@ import multimedia.entity.Music;
 import multimedia.repository.MusicRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,18 +39,13 @@ public class MusicService {
                 MusicDto.class);
     }
 
-    //TODO
+    @Transactional
     public MusicDto updateMusicById(int id, UpdateMusicCommand command) {
         Music music = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Music not found: " + id));
         music.setPerformer(command.getPerformer());
         music.setTitle(command.getTitle());
         music.setGenre(command.getGenre());
-        String performer = music.getPerformer();
-        String title = music.getTitle();
-        String genre = music.getGenre();
-
-        /*repository.updateById(id, performer, title, genre);*/
         return modelMapper.map(music, MusicDto.class);
     }
 

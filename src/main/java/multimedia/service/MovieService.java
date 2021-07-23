@@ -8,6 +8,7 @@ import multimedia.entity.Movie;
 import multimedia.repository.MovieRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,7 +38,7 @@ public class MovieService {
                 MovieDto.class);
     }
 
-    //TODO
+    @Transactional
     public MovieDto updateMovieById(int id, UpdateMovieCommand command) {
         Movie movie = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Movie not found: " + id));

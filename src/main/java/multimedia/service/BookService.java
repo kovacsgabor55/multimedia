@@ -8,6 +8,7 @@ import multimedia.entity.Book;
 import multimedia.repository.BookRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,7 +38,7 @@ public class BookService {
                 BookDto.class);
     }
 
-    //TODO
+    @Transactional
     public BookDto updateBookById(int id, UpdateBookCommand command) {
         Book book = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Book not found: " + id));
