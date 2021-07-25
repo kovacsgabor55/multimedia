@@ -5,7 +5,7 @@ create table books
     release_date date         not null,
     title        varchar(100) not null,
     primary key (id)
-)
+);
 create table movies
 (
     id          integer      not null auto_increment,
@@ -13,7 +13,7 @@ create table movies
     film_studio varchar(30)  not null,
     title       varchar(100) not null,
     primary key (id)
-)
+);
 create table musics
 (
     id        integer      not null auto_increment,
@@ -21,4 +21,4 @@ create table musics
     performer varchar(50)  not null,
     title     varchar(100) not null,
     primary key (id)
-)
+);
