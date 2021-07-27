@@ -1,6 +1,7 @@
 package multimedia.service;
 
 import lombok.AllArgsConstructor;
+import multimedia.MusicNotFoundException;
 import multimedia.command.CreateMusicCommand;
 import multimedia.command.UpdateMusicCommand;
 import multimedia.dto.MusicDto;
@@ -35,14 +36,14 @@ public class MusicService {
 
     public MusicDto findMusicById(int id) {
         return modelMapper.map(repository.findById(id)
-                        .orElseThrow(() -> new IllegalArgumentException("Music not fount: " + id)),
+                        .orElseThrow(() -> new MusicNotFoundException(id)),
                 MusicDto.class);
     }
 
     @Transactional
     public MusicDto updateMusicById(int id, UpdateMusicCommand command) {
         Music music = repository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Music not found: " + id));
+                .orElseThrow(() -> new MusicNotFoundException(id));
         music.setPerformer(command.getPerformer());
         music.setTitle(command.getTitle());
         music.setGenre(command.getGenre());

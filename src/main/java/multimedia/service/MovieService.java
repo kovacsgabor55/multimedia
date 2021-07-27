@@ -1,6 +1,7 @@
 package multimedia.service;
 
 import lombok.AllArgsConstructor;
+import multimedia.MovieNotFoundException;
 import multimedia.command.CreateMovieCommand;
 import multimedia.command.UpdateMovieCommand;
 import multimedia.dto.MovieDto;
@@ -34,14 +35,14 @@ public class MovieService {
 
     public MovieDto findMovieById(int id) {
         return modelMapper.map(repository.findById(id)
-                        .orElseThrow(() -> new IllegalArgumentException("Movie not fount: " + id)),
+                        .orElseThrow(() -> new MovieNotFoundException(id)),
                 MovieDto.class);
     }
 
     @Transactional
     public MovieDto updateMovieById(int id, UpdateMovieCommand command) {
         Movie movie = repository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Movie not found: " + id));
+                .orElseThrow(() -> new MovieNotFoundException(id));
         movie.setTitle(command.getTitle());
         movie.setDirector(command.getDirector());
         movie.setFilmStudio(command.getFilmStudio());

@@ -1,6 +1,7 @@
 package multimedia.service;
 
 import lombok.AllArgsConstructor;
+import multimedia.BookNotFoundException;
 import multimedia.command.CreateBookCommand;
 import multimedia.command.UpdateBookCommand;
 import multimedia.dto.BookDto;
@@ -34,14 +35,14 @@ public class BookService {
 
     public BookDto findBookById(int id) {
         return modelMapper.map(repository.findById(id)
-                        .orElseThrow(() -> new IllegalArgumentException("Book not fount: " + id)),
+                        .orElseThrow(() -> new BookNotFoundException(id)),
                 BookDto.class);
     }
 
     @Transactional
     public BookDto updateBookById(int id, UpdateBookCommand command) {
         Book book = repository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Book not found: " + id));
+                .orElseThrow(() -> new BookNotFoundException(id));
         book.setAuthor(command.getAuthor());
         book.setTitle(command.getTitle());
         book.setReleaseDate(command.getReleaseDate());
